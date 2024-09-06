@@ -20,7 +20,7 @@ export default function SetupPage() {
 
   return (
     <div className="p-4">
-      Main Page
+      This is a protected page
     </div>
   )
 }
