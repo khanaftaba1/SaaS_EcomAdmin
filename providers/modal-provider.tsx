@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-import { StoreModal } from "@/components/modals/store-modal";
+import { StoreModal } from "@/components/modals/store-model";
 
 
 //Until lifecycle has run (client componenent) return null (server client)
