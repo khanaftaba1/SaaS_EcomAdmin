@@ -8,7 +8,7 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 
 import { Modal } from "@/components/ui/modal";
-import { useStoreModal } from "@/hooks/use-store-model";
+import { useStoreModal } from "@/hooks/use-store-modal";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components//ui/button";
 import {

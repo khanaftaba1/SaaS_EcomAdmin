@@ -1,37 +1,37 @@
-'use client'
+import { UserButton } from '@clerk/nextjs'
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from 'next/navigation'
 
-import { useAuth, UserButton } from "@clerk/nextjs";
 import { MainNav } from '@/components/main-nav'
-import StoreSwitcher from "@/components/store-switcher";
-import { redirect } from "next/navigation";
-import prismadb from '@/lib/prismadb';
+import StoreSwitcher from '@/components/store-switcher'
+// import { ThemeToggle } from '@/components/theme-toggle'
+import prismadb from '@/lib/prismadb'
 
+export default async function Navbar() {
+  const { userId } = auth()
 
-const Navbar = async() => {
-    const { userId } = useAuth()
+  if (!userId) {
+    redirect('/sign-in')
+  }
 
-    if (!userId) {
-      redirect('/sign-in')
-    }
-  
-    const stores = await prismadb.store.findMany({
-      where: {
-        userId,
-      },
-    })
-  
-    return ( 
-        <div className="border-b">
-            <div className="flex h-16 items-center px-4">
-                {/* <StoreSwitcher items={stores}/> */}
-                <p>Store Switcher</p>
-                <MainNav className="mx-6"/>
-                <div className="ml-auto flex items-center space-x-4">
-                    <UserButton />
-                </div>
-            </div>
+  const stores = await prismadb.store.findMany({
+    where: {
+      userId,
+    },
+  })
+
+  return (
+    <div className="border-b">
+      <div className="flex h-16 items-center px-4">
+        <StoreSwitcher items={stores} />
+
+        <MainNav className="mx-6" />
+
+        <div className="ml-auto flex items-center space-x-4">
+          {/* <ThemeToggle /> */}
+          <UserButton/>
         </div>
-     );
+      </div>
+    </div>
+  )
 }
-
-export default Navbar;
