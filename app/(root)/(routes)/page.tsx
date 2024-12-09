@@ -1,5 +1,6 @@
 "use client";
 
+import { StoreModal } from "@/components/modals/store-model";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import { useStoreModal } from "@/hooks/use-store-model";
@@ -12,6 +13,7 @@ export default function SetupPage() {
   const isOpen = useStoreModal((state)=>state.isOpen)
 
   useEffect(() => {
+    console.log("isOpen", isOpen);
     if (!isOpen){
       onOpen()
     }
